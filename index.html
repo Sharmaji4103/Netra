@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Netra Beauty Salon</title>
+
+    <style>
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+
+        /* =====================================================
+           COMMON
+        ===================================================== */
+
+        .container {
+            width: 90%;
+            max-width: 1250px;
+            margin: auto;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            z-index: 100;
+
+            background: rgba(0, 0, 0, 0.65);
+
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+        }
+
+        .nav-wrapper {
+            height: 80px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+
+            line-height: 1;
+        }
+
+        .logo-main {
+            color: #d4af37;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 28px;
+            letter-spacing: 4px;
+        }
+
+        .logo-sub {
+            margin-top: 6px;
+
+            color: #fff;
+
+            font-size: 8px;
+            font-weight: 600;
+
+            letter-spacing: 3px;
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        .navbar {
+            display: flex;
+            align-items: center;
+
+            gap: 30px;
+        }
+
+        .navbar a {
+            position: relative;
+
+            color: #fff;
+
+            font-size: 13px;
+
+            transition: 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #d4af37;
+        }
+
+        .navbar a:not(.appointment-btn)::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: -8px;
+
+            width: 0;
+            height: 1px;
+
+            background: #d4af37;
+
+            transition: 0.3s ease;
+        }
+
+        .navbar a:hover::after,
+        .navbar a.active::after {
+            width: 100%;
+        }
+
+        .navbar a.active {
+            color: #d4af37;
+        }
+
+
+        /* =====================================================
+           APPOINTMENT BUTTON
+        ===================================================== */
+
+        .appointment-btn {
+            padding: 13px 23px;
+
+            background: #d4af37;
+
+            color: #000 !important;
+
+            font-size: 13px !important;
+            font-weight: 600;
+
+            border: 1px solid #d4af37;
+
+            transition: 0.3s ease;
+        }
+
+        .appointment-btn:hover {
+            background: transparent;
+
+            color: #d4af37 !important;
+        }
+
+
+        /* =====================================================
+           MOBILE MENU
+        ===================================================== */
+
+        .menu-toggle {
+            display: none;
+
+            width: 42px;
+            height: 42px;
+
+            border: 1px solid rgba(212, 175, 55, 0.5);
+
+            background: transparent;
+
+            color: #d4af37;
+
+            font-size: 22px;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            position: relative;
+
+            min-height: 100vh;
+
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+
+            background: #000;
+        }
+
+
+        /* HERO IMAGE */
+
+        .hero-image {
+            position: absolute;
+
+            top: 80px;
+            right: 0;
+
+            width: 67%;
+            height: calc(100% - 80px);
+
+            object-fit: cover;
+
+            object-position: right center;
+
+            z-index: 1;
+        }
+
+
+        /* HERO IMAGE OVERLAY */
+
+        .hero-image-overlay {
+            position: absolute;
+
+            top: 80px;
+            right: 0;
+
+            width: 67%;
+            height: calc(100% - 80px);
+
+            z-index: 2;
+
+            background:
+                linear-gradient(
+                    to right,
+                    #000 0%,
+                    rgba(0, 0, 0, 0.85) 15%,
+                    rgba(0, 0, 0, 0.25) 48%,
+                    rgba(0, 0, 0, 0) 75%
+                );
+        }
+
+
+        /* HERO CONTENT */
+
+        .hero-content {
+            position: relative;
+
+            z-index: 5;
+
+            width: 90%;
+            max-width: 1250px;
+
+            margin: auto;
+
+            padding-top: 80px;
+        }
+
+        .hero-text {
+            width: 55%;
+        }
+
+
+        /* HERO SMALL TITLE */
+
+        .hero-small-title {
+            margin-bottom: 20px;
+
+            color: #d4af37;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 4px;
+        }
+
+
+        /* HERO HEADING */
+
+        .hero h1 {
+            max-width: 650px;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: clamp(55px, 6vw, 82px);
+
+            font-weight: 400;
+
+            line-height: 1.02;
+
+            color: #fff;
+        }
+
+        .hero h1 .gold {
+            display: block;
+
+            color: #d4af37;
+
+            font-style: italic;
+        }
+
+
+        /* HERO DESCRIPTION */
+
+        .hero-description {
+            max-width: 510px;
+
+            margin-top: 25px;
+            margin-bottom: 35px;
+
+            color: #d6d6d6;
+
+            font-size: 15px;
+
+            line-height: 1.8;
+        }
+
+
+        /* HERO BUTTONS */
+
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 48px;
+
+            padding: 0 27px;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #d4af37;
+
+            color: #000;
+
+            border: 1px solid #d4af37;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+
+            color: #d4af37;
+        }
+
+        .btn-outline {
+            background: transparent;
+
+            color: #fff;
+
+            border: 1px solid #fff;
+        }
+
+        .btn-outline:hover {
+            border-color: #d4af37;
+
+            color: #d4af37;
+        }
+
+
+        /* =====================================================
+           SECTION COMMON
+        ===================================================== */
+
+        .beauty-section {
+            position: relative;
+
+            padding: 120px 0;
+
+            background: #f8f3ec;
+
+            color: #211916;
+        }
+
+        .beauty-container {
+            width: 90%;
+            max-width: 1250px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            align-items: center;
+
+            gap: 90px;
+        }
+
+
+        /* =====================================================
+           SECTION CONTENT
+        ===================================================== */
+
+        .beauty-content {
+            max-width: 570px;
+        }
+
+        .section-label {
+            display: block;
+
+            margin-bottom: 20px;
+
+            color: #7b1e2b;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 4px;
+        }
+
+        .beauty-content h2 {
+            margin-bottom: 25px;
+
+            color: #241917;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: clamp(42px, 4vw, 62px);
+
+            font-weight: 400;
+
+            line-height: 1.08;
+        }
+
+        .beauty-content h2 span {
+            display: block;
+
+            color: #7b1e2b;
+
+            font-style: italic;
+        }
+
+        .beauty-content p {
+            color: #716966;
+
+            font-size: 15px;
+
+            line-height: 1.9;
+        }
+
+        .beauty-content .section-intro {
+            margin-bottom: 15px;
+
+            color: #4f4541;
+
+            font-size: 16px;
+        }
+
+
+        /* =====================================================
+           FEATURE LIST
+        ===================================================== */
+
+        .feature-list {
+            margin-top: 28px;
+            margin-bottom: 30px;
+
+            border-top: 1px solid #ded2c4;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+
+            min-height: 52px;
+
+            border-bottom: 1px solid #ded2c4;
+        }
+
+        .feature-item span {
+            margin-right: 12px;
+
+            color: #7b1e2b;
+
+            font-size: 18px;
+        }
+
+        .feature-item p {
+            color: #332824;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 15px;
+
+            line-height: 1;
+        }
+
+
+        /* =====================================================
+           CONTENT BUTTONS
+        ===================================================== */
+
+        .content-buttons {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .dark-button {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 48px;
+
+            padding: 0 25px;
+
+            background: #7b1e2b;
+
+            border: 1px solid #7b1e2b;
+
+            color: #fff;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.3s ease;
+        }
+
+        .dark-button:hover {
+            background: #d4af37;
+
+            border-color: #d4af37;
+
+            color: #000;
+        }
+
+        .outline-button {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 48px;
+
+            padding: 0 25px;
+
+            background: transparent;
+
+            border: 1px solid #7b1e2b;
+
+            color: #7b1e2b;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.3s ease;
+        }
+
+        .outline-button:hover {
+            background: #7b1e2b;
+
+            color: #fff;
+        }
+
+
+        /* =====================================================
+           SECTION 1 - IMAGE COLLAGE
+        ===================================================== */
+
+        .beauty-images {
+            position: relative;
+
+            min-height: 600px;
+        }
+
+        .image-main {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 75%;
+            height: 510px;
+
+            overflow: hidden;
+        }
+
+        .image-main img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: transform 0.7s ease;
+        }
+
+        .image-main:hover img {
+            transform: scale(1.04);
+        }
+
+
+        /* SMALL IMAGE */
+
+        .image-small {
+            position: absolute;
+
+            right: 0;
+            bottom: 0;
+
+            width: 47%;
+            height: 350px;
+
+            border: 8px solid #f8f3ec;
+
+            overflow: hidden;
+        }
+
+        .image-small img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: transform 0.7s ease;
+        }
+
+        .image-small:hover img {
+            transform: scale(1.05);
+        }
+
+
+        /* IMAGE CAPTION */
+
+        .image-caption {
+            position: absolute;
+
+            left: 25px;
+            bottom: 22px;
+
+            color: #fff;
+
+            font-size: 13px;
+
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+        }
+
+        .image-caption span {
+            margin-right: 10px;
+
+            color: #d4af37;
+        }
+
+
+        /* SMALL IMAGE CAPTION */
+
+        .small-caption {
+            position: absolute;
+
+            left: 18px;
+            bottom: 15px;
+
+            color: #fff;
+
+            font-size: 12px;
+
+            z-index: 3;
+        }
+
+
+        /* PLAY BUTTON */
+
+        .play-button {
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            width: 62px;
+            height: 62px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: rgba(123, 30, 43, 0.92);
+
+            border: 1px solid rgba(255,255,255,0.9);
+
+            color: #fff;
+
+            font-size: 17px;
+
+            z-index: 5;
+
+            transition: 0.3s ease;
+        }
+
+        .play-button:hover {
+            background: #d4af37;
+
+            color: #000;
+
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+
+
+        /* =====================================================
+           SECTION 2
+        ===================================================== */
+
+        .section-two {
+            background: #fff;
+
+            padding-top: 110px;
+        }
+
+        .single-beauty-image {
+            position: relative;
+
+            width: 100%;
+            height: 620px;
+
+            overflow: hidden;
+        }
+
+        .single-beauty-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: transform 0.7s ease;
+        }
+
+        .single-beauty-image:hover img {
+            transform: scale(1.03);
+        }
+
+
+        /* IMAGE OVERLAY */
+
+        .single-image-overlay {
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 100%;
+
+            padding: 60px 30px 25px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,0.8),
+                    rgba(0,0,0,0)
+                );
+
+            color: #fff;
+        }
+
+        .single-image-overlay span {
+            color: #d4af37;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 3px;
+        }
+
+        .single-image-overlay strong {
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 25px;
+
+            font-weight: 400;
+        }
+
+
+        /* =====================================================
+           DECORATIVE GOLD LINE
+        ===================================================== */
+
+        .section-gold-line {
+            width: 60px;
+            height: 2px;
+
+            margin-bottom: 25px;
+
+            background: #d4af37;
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .navbar {
+                gap: 18px;
+            }
+
+            .navbar a {
+                font-size: 12px;
+            }
+
+            .beauty-container {
+                gap: 55px;
+            }
+
+        }
+
+
+        /* =====================================================
+           MOBILE NAV
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .navbar {
+                display: none;
+
+                position: absolute;
+
+                top: 80px;
+                left: 0;
+
+                width: 100%;
+
+                padding: 25px;
+
+                background: #080808;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 22px;
+
+                border-bottom: 1px solid rgba(212,175,55,0.3);
+            }
+
+            .navbar.show {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .appointment-btn {
+                width: 100%;
+
+                text-align: center;
+            }
+
+
+            /* HERO */
+
+            .hero-image {
+                width: 100%;
+
+                opacity: 0.55;
+
+                object-position: 75% center;
+            }
+
+            .hero-image-overlay {
+                width: 100%;
+
+                background:
+                    linear-gradient(
+                        to right,
+                        rgba(0,0,0,0.96),
+                        rgba(0,0,0,0.65),
+                        rgba(0,0,0,0.2)
+                    );
+            }
+
+            .hero-text {
+                width: 70%;
+            }
+
+
+            /* BEAUTY SECTIONS */
+
+            .beauty-container {
+                grid-template-columns: 1fr;
+
+                gap: 60px;
+            }
+
+            .beauty-content {
+                max-width: 700px;
+            }
+
+            .beauty-images {
+                min-height: 600px;
+
+                width: 100%;
+            }
+
+            .single-beauty-image {
+                height: 550px;
+            }
+
+        }
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .container {
+                width: 88%;
+            }
+
+            .nav-wrapper {
+                height: 72px;
+            }
+
+            .logo-main {
+                font-size: 24px;
+            }
+
+            .logo-sub {
+                font-size: 7px;
+            }
+
+
+            /* HERO */
+
+            .hero-image {
+                top: 72px;
+
+                height: calc(100% - 72px);
+
+                object-position: 72% center;
+
+                opacity: 0.48;
+            }
+
+            .hero-image-overlay {
+                top: 72px;
+
+                height: calc(100% - 72px);
+
+                background:
+                    linear-gradient(
+                        to right,
+                        rgba(0,0,0,0.97) 0%,
+                        rgba(0,0,0,0.75) 55%,
+                        rgba(0,0,0,0.3) 100%
+                    );
+            }
+
+            .hero-content {
+                padding-top: 80px;
+            }
+
+            .hero-text {
+                width: 100%;
+            }
+
+            .hero-small-title {
+                font-size: 9px;
+
+                letter-spacing: 2.5px;
+
+                margin-bottom: 15px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero-description {
+                max-width: 400px;
+
+                font-size: 14px;
+
+                line-height: 1.7;
+
+                margin-top: 20px;
+
+                margin-bottom: 28px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+
+                align-items: stretch;
+
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+
+            /* BEAUTY SECTIONS */
+
+            .beauty-section {
+                padding: 75px 0;
+            }
+
+            .beauty-container {
+                width: 88%;
+
+                gap: 45px;
+            }
+
+
+            /* IMAGE COLLAGE */
+
+            .beauty-images {
+                min-height: 500px;
+            }
+
+            .image-main {
+                width: 82%;
+
+                height: 420px;
+            }
+
+            .image-small {
+                width: 48%;
+
+                height: 270px;
+
+                border-width: 5px;
+            }
+
+
+            /* CONTENT */
+
+            .section-label {
+                font-size: 9px;
+
+                letter-spacing: 2.5px;
+            }
+
+            .beauty-content h2 {
+                font-size: 43px;
+            }
+
+            .beauty-content p {
+                font-size: 14px;
+
+                line-height: 1.8;
+            }
+
+
+            /* BUTTONS */
+
+            .content-buttons {
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+            .content-buttons a {
+                width: 100%;
+            }
+
+
+            /* SINGLE IMAGE */
+
+            .single-beauty-image {
+                height: 500px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
+
+    <header class="header">
+
+        <div class="container nav-wrapper">
+
+
+            <!-- LOGO -->
+
+            <a href="#home" class="logo">
+
+                <span class="logo-main">
+                    NETRA
+                </span>
+
+                <span class="logo-sub">
+                    BEAUTY SALON
+                </span>
+
+            </a>
+
+
+            <!-- NAVIGATION -->
+
+            <nav class="navbar">
+
+                <a href="#home" class="active">
+                    Home
+                </a>
+
+                <a href="#about">
+                    About
+                </a>
+
+                <a href="#services">
+                    Services
+                </a>
+
+                <a href="#gallery">
+                    Gallery
+                </a>
+
+                <a href="#pricing">
+                    Pricing
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+                <a href="#appointment" class="appointment-btn">
+                    Book Appointment
+                </a>
+
+            </nav>
+
+
+            <!-- MOBILE MENU -->
+
+            <button
+                class="menu-toggle"
+                onclick="toggleMenu()"
+                aria-label="Open navigation menu">
+
+                ☰
+
+            </button>
+
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         HERO
+    ===================================================== -->
+
+    <section class="hero" id="home">
+
+
+        <img
+            class="hero-image"
+            src="https://raw.githubusercontent.com/Sharmaji4103/Netra/main/netra-banner.jpeg"
+            alt="Netra Beauty Salon"
+        >
+
+
+        <div class="hero-image-overlay"></div>
+
+
+        <div class="hero-content">
+
+            <div class="hero-text">
+
+                <p class="hero-small-title">
+                    WELCOME TO NETRA BEAUTY SALON
+                </p>
+
+
+                <h1>
+
+                    Look Good.
+
+                    <span class="gold">
+                        Feel Good.
+                    </span>
+
+                    Be You.
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    Discover premium beauty, hair and bridal
+                    services designed to make you look and feel
+                    your absolute best.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="#appointment"
+                        class="btn btn-primary">
+
+                        Book Your Appointment
+
+                    </a>
+
+
+                    <a
+                        href="#services"
+                        class="btn btn-outline">
+
+                        Explore Services
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SECTION 1
+         IMAGES LEFT / CONTENT RIGHT
+    ===================================================== -->
+
+    <section class="beauty-section section-one" id="about">
+
+        <div class="beauty-container">
+
+
+            <!-- LEFT IMAGES -->
+
+            <div class="beauty-images">
+
+
+                <!-- MAIN IMAGE -->
+
+                <div class="image-main">
+
+                    <img
+                        src="https://raw.githubusercontent.com/Sharmaji4103/Netra/main/netra01.jpeg"
+                        alt="Netra Beauty Salon"
+                    >
+
+                    <div class="image-caption">
+
+                        <span>01</span>
+
+                        Netra Beauty
+
+                    </div>
+
+                </div>
+
+
+                <!-- SMALL IMAGE -->
+
+                <div class="image-small">
+
+                    <img
+                        src="https://raw.githubusercontent.com/Sharmaji4103/Netra/main/netra01.jpeg"
+                        alt="Netra Bridal Makeup"
+                    >
+
+
+                    <!-- INSTAGRAM REEL -->
+
+                    <a
+                        href="https://www.instagram.com/reel/DPNgW5hCBSS/?igsi=Z3IyZ3dkZmxhaTlz"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="play-button"
+                        aria-label="Watch Netra Instagram Reel">
+
+                        ▶
+
+                    </a>
+
+
+                    <div class="small-caption">
+                        Watch our work
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RIGHT CONTENT -->
+
+            <div class="beauty-content">
+
+                <span class="section-label">
+                    NETRA BEAUTY SALON
+                </span>
+
+
+                <div class="section-gold-line"></div>
+
+
+                <h2>
+
+                    Beauty that makes
+
+                    <span>
+                        you feel beautiful.
+                    </span>
+
+                </h2>
+
+
+                <p class="section-intro">
+
+                    At Netra Beauty Salon, beauty is more than
+                    just appearance. It is about confidence,
+                    elegance and feeling your very best.
+
+                </p>
+
+
+                <p>
+
+                    From bridal makeup and hairstyling to
+                    skincare, hair care and complete beauty
+                    services, our team creates every look with
+                    attention to detail and care.
+
+                </p>
+
+
+
+                <!-- FEATURES -->
+
+                <div class="feature-list">
+
+
+                    <div class="feature-item">
+
+                        <span>—</span>
+
+                        <p>
+                            Bridal & Party Makeup
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-item">
+
+                        <span>—</span>
+
+                        <p>
+                            Professional Hair Styling
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-item">
+
+                        <span>—</span>
+
+                        <p>
+                            Skin Care & Glow Treatments
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-item">
+
+                        <span>—</span>
+
+                        <p>
+                            Pre-Wedding Beauty Services
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- BUTTON -->
+
+                <a
+                    href="#services"
+                    class="dark-button">
+
+                    Explore Our Services
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SECTION 2
+         CONTENT LEFT / IMAGE RIGHT
+    ===================================================== -->
+
+    <section class="beauty-section section-two" id="services">
+
+        <div class="beauty-container">
+
+
+            <!-- LEFT CONTENT -->
+
+            <div class="beauty-content">
+
+                <span class="section-label">
+                    BRIDAL & SPECIAL OCCASIONS
+                </span>
+
+
+                <div class="section-gold-line"></div>
+
+
+                <h2>
+
+                    Your special day
+
+                    <span>
+                        deserves the best.
+                    </span>
+
+                </h2>
+
+
+                <p class="section-intro">
+
+                    From your first consultation to the final
+                    touch, we make your bridal beauty experience
+                    relaxed, personal and unforgettable.
+
+                </p>
+
+
+                <p>
+
+                    Whether you are getting ready for your
+                    wedding, reception, engagement or a special
+                    celebration, our team creates a look that
+                    complements your personality, outfit and
+                    occasion.
+
+                </p>
+
+
+
+                <!-- FEATURES -->
+
+                <div class="feature-list">
+
+
+                    <div class="feature-item">
+
+                        <span>—</span>
+
+                        <p>
+                            HD & Airbrush Makeup
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-item">
+
+                        <span>—</span>
+
+                        <p>
+                            Bridal Hairstyling
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-item">
+
+                        <span>—</span>
+
+                        <p>
+                            Saree & Dupatta Draping
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-item">
+
+                        <span>—</span>
+
+                        <p>
+                            Pre-Wedding & Party Looks
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- BUTTONS -->
+
+                <div class="content-buttons">
+
+
+                    <a
+                        href="#appointment"
+                        class="dark-button">
+
+                        Book Appointment
+
+                    </a>
+
+
+                    <a
+                        href="https://www.instagram.com/reel/DXrHa8yjINa/?igsi=MWhzZGIzcGo3eHBtYw=="
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="outline-button">
+
+                        View Instagram
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RIGHT IMAGE -->
+
+            <div class="single-beauty-image">
+
+
+                <img
+                    src="https://raw.githubusercontent.com/Sharmaji4103/Netra/main/netra02.jpeg"
+                    alt="Netra Beauty Salon Bridal Look"
+                >
+
+
+                <div class="single-image-overlay">
+
+                    <span>
+                        NETRA BEAUTY SALON
+                    </span>
+
+                    <strong>
+                        Beauty. Elegance. You.
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FUTURE SECTIONS
+    ===================================================== -->
+
+    <!--
+        Services section will be added next.
+
+        Gallery section will be added next.
+
+        Pricing section will be added next.
+
+        Contact section will be added next.
+
+        Appointment section will be added next.
+    -->
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+        function toggleMenu() {
+
+            const navbar =
+                document.querySelector(".navbar");
+
+            navbar.classList.toggle("show");
+
+        }
+
+
+        /* Close mobile menu after clicking a link */
+
+        document.querySelectorAll(".navbar a").forEach(function(link) {
+
+            link.addEventListener("click", function() {
+
+                document
+                    .querySelector(".navbar")
+                    .classList.remove("show");
+
+            });
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
